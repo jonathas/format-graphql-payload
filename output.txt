@@ -1,0 +1,101 @@
+variables: {
+  "input": {
+    "offset": 0,
+    "limit": 15,
+    "tagsId": []
+  }
+}
+
+=========================
+
+query GetGroupsInfoTable($input: GetGroupsInput!) {
+  groups(input: $input) {
+    ...GetGroupInfoTable
+    __typename
+  }
+}
+
+fragment GetGroupInfoTable on GroupsAndCountOutput {
+  groups {
+    ...GroupsInfoTable
+    __typename
+  }
+  totalCount
+  __typename
+}
+
+fragment GroupsInfoTable on AsteriskQueueTable {
+  ...GroupInfo
+  isInCFD
+  inboundNumbers {
+    ...CallNumberInfo
+    __typename
+  }
+  users {
+    ...UserInfo
+    __typename
+  }
+  tags {
+    id
+    name
+    __typename
+  }
+  __typename
+}
+
+fragment GroupInfo on AsteriskQueueTable {
+  id
+  name
+  internalName
+  extension
+  email
+  skillId
+  serverRegionId
+  timeout
+  isMusiconhold
+  strategy
+  maxlen
+  rule
+  timeout
+  ringinuse
+  isUsingCompanyCallbackSettings
+  __typename
+}
+
+fragment CallNumberInfo on CallNumbers {
+  id
+  publicCallerId
+  callerIdE164
+  trunkName
+  countryCode
+  countryId
+  internalName
+  serverRegionId
+  created
+  __typename
+}
+
+fragment UserInfo on Users {
+  id
+  fullName
+  serverRegionId
+  role
+  firstname
+  lastname
+  email
+  companyId
+  displayName
+  status
+  role
+  created
+  modified
+  defaultLanguage
+  extension
+  externalExtension
+  externalNumber
+  externalCountryCode
+  onlineStatus
+  useGlobalSettings
+  defaultOutboundNumberId
+  __typename
+}
