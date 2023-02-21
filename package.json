@@ -1,7 +1,7 @@
 {
   "name": "format-graphql-payload",
   "version": "0.0.1",
-  "description": "Read an unformatted GraphQL payload and formats it",
+  "description": "Reads an unformatted GraphQL payload and formats it",
   "main": "index.ts",
   "scripts": {
     "start": "ts-node index.ts"
